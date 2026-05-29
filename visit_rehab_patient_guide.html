@@ -129,12 +129,12 @@
       font-weight: 400;
     }
 
-    /* M3 스타일 탭바 - wrap 구조로 변경하여 잘림 전면 해결 */
+    /* M3 스타일 탭바 - wrap 기본 장착 */
     .tab-row { 
       display: flex; 
-      gap: 6px; 
+      gap: 8px; 
       margin-bottom: 2rem; 
-      flex-wrap: wrap; /* 화면 너비가 좁아지면 아래 줄로 예쁘게 내려옴 */
+      flex-wrap: wrap; 
       padding: 4px 0;
       border-bottom: 1px solid var(--md-sys-color-outline-variant);
     }
@@ -467,7 +467,7 @@
     }
 
     /* -------------------------------------------------------------
-       5. 모바일 반응형 최적화 미디어 쿼리
+       5. 모바일 반응형 최적화 미디어 쿼리 (2x2 바둑판식 레이아웃 대폭 강화)
        ------------------------------------------------------------- */
     @media (max-width: 600px) {
       .doc {
@@ -485,16 +485,25 @@
         font-size: 1.6rem;
       }
 
-      /* 모바일에서 탭바 간격 및 버튼 크기 축소 (자동 2줄 정렬) */
+      /* 2x2 바둑판식 배열로 전환하여 절대 오른쪽이 잘리지 않고 완전 깔끔하게 만듦 */
       .tab-row {
+        display: grid;
+        grid-template-columns: 1fr 1fr; 
         gap: 6px;
         margin-bottom: 1.5rem;
+        border-bottom: none; /* 하단 실선 제거 */
+        padding: 0;
       }
+      
       .tab-btn {
         font-size: 0.8rem;
-        padding: 6px 12px;
+        padding: 10px 6px;
         gap: 4px;
+        justify-content: center; /* 아이콘과 글자 가운데 정렬 */
+        width: 100%;
+        border-radius: 12px;
       }
+      
       .tab-btn span.material-symbols-rounded {
         font-size: 16px !important;
       }
