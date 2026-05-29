@@ -1,626 +1,197 @@
 <!DOCTYPE html>
 <html lang="ko">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>방문재활 서비스 안내자료</title>
-  
-  <!-- 구글 Noto Sans KR 폰트 로드 -->
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;500;700&display=swap" rel="stylesheet">
-  
-  <!-- 구글 머티리얼 3 공식 아이콘 (Material Symbols Rounded) 로드 -->
-  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Rounded:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>씨엔씨푸른병원 방문재활 서비스 안내</title>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@tabler/icons-webfont@3.3.0/dist/tabler-icons.min.css">
+<style>
+  :root {
+    --bg-primary: #ffffff;
+    --bg-secondary: #f6f6f3;
+    --bg-tertiary: #ececec;
+    --border-tertiary: #e6e6e3;
+    --border-secondary: #d4d4d0;
+    --text-primary: #1f1f1c;
+    --text-secondary: #5f5e5a;
+    --text-tertiary: #8a8983;
+    --radius-md: 10px;
+    --radius-lg: 14px;
+    --font-sans: -apple-system, BlinkMacSystemFont, 'Pretendard', 'Apple SD Gothic Neo', 'Malgun Gothic', sans-serif;
+  }
 
-  <style>
-    /* -------------------------------------------------------------
-       1. 구글 머티리얼 3 (Material Design 3) 컬러 변수 및 테마 정의
-       ------------------------------------------------------------- */
-    :root {
-      /* M3 Light Color Palette (의료/돌봄 최적화 색상 조합) */
-      --md-sys-color-primary: #006874;            /* 메인 시안 블루 */
-      --md-sys-color-on-primary: #ffffff;
-      --md-sys-color-primary-container: #97f0ff;  /* 연한 시안 블루 배경 */
-      --md-sys-color-on-primary-container: #001f24;
-      
-      --md-sys-color-secondary: #4a6267;          /* 블루그레이 */
-      --md-sys-color-on-secondary: #ffffff;
-      --md-sys-color-secondary-container: #cde7ec; /* 연한 블루그레이 배경 */
-      --md-sys-color-on-secondary-container: #051f23;
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  html { -webkit-text-size-adjust: 100%; }
+  body {
+    font-family: var(--font-sans);
+    background: var(--bg-secondary);
+    color: var(--text-primary);
+    line-height: 1.5;
+    -webkit-font-smoothing: antialiased;
+    padding: 1.5rem 0;
+  }
 
-      --md-sys-color-background: #fafdfd;         /* 메인 전체 배경 */
-      --md-sys-color-on-background: #191c1d;
-      
-      --md-sys-color-surface: #f8fdff;            /* 카드 기본 배경 */
-      --md-sys-color-on-surface: #191c1d;
-      --md-sys-color-surface-variant: #e0e3e3;    
-      --md-sys-color-on-surface-variant: #3f484a;
-      
-      --md-sys-color-outline: #70797d;            
-      --md-sys-color-outline-variant: #c4c7c7;    /* 아주 부드러운 테두리선 */
+  .doc { max-width: 720px; margin: 0 auto; background: var(--bg-primary); border-radius: 16px; padding: 1.75rem 1.5rem; box-shadow: 0 1px 3px rgba(0,0,0,0.04); }
 
-      /* 상태/지자체 전용 테마 배경 */
-      --md-sys-color-success-container: #e1f5ee;  
-      --md-sys-color-on-success-container: #085041;
-      --md-sys-color-success-border: #9fe1cb;
+  /* 헤더 */
+  .header-bar { background: #E6F1FB; border-radius: var(--radius-lg); padding: 1.4rem 1.5rem; margin-bottom: 1.5rem; }
+  .header-hospital { font-size: 12px; color: #185FA5; font-weight: 600; margin-bottom: 4px; letter-spacing: 0.04em; }
+  .header-bar h1 { font-size: 22px; font-weight: 700; color: #0C447C; margin-bottom: 4px; display: flex; align-items: center; gap: 6px; }
+  .header-bar p { font-size: 14px; color: #185FA5; }
 
-      /* M3 둥근 모서리 규격 (Rounded Corners) */
-      --md-shape-corner-small: 8px;
-      --md-shape-corner-medium: 12px;
-      --md-shape-corner-large: 16px;
-      --md-shape-corner-extra-large: 28px;
-      
-      --font-sans: 'Noto Sans KR', sans-serif;
-    }
+  /* 탭 */
+  .tab-row { display: flex; gap: 6px; margin-bottom: 1.25rem; flex-wrap: wrap; }
+  .tab-btn { font-size: 13px; padding: 7px 14px; border-radius: 20px; border: 1px solid var(--border-secondary); background: var(--bg-primary); color: var(--text-secondary); cursor: pointer; transition: all 0.15s; font-family: inherit; }
+  .tab-btn:hover { background: var(--bg-tertiary); }
+  .tab-btn.active { background: #185FA5; color: #fff; border-color: #185FA5; }
+  .tab-content { display: none; animation: fadeIn 0.25s; }
+  .tab-content.active { display: block; }
+  @keyframes fadeIn { from { opacity: 0; transform: translateY(4px); } to { opacity: 1; transform: translateY(0); } }
 
-    /* -------------------------------------------------------------
-       2. 스타일 기본 초기화
-       ------------------------------------------------------------- */
-    * { 
-      box-sizing: border-box; 
-      margin: 0; 
-      padding: 0; 
-      -webkit-tap-highlight-color: transparent;
-    }
-    
-    body { 
-      font-family: var(--font-sans); 
-      background-color: var(--md-sys-color-background);
-      color: var(--md-sys-color-on-background);
-      line-height: 1.6;
-      -webkit-font-smoothing: antialiased;
-      -moz-osx-font-smoothing: grayscale;
-    }
+  /* 섹션 타이틀 */
+  .section-title { font-size: 12px; font-weight: 600; color: var(--text-secondary); letter-spacing: 0.06em; text-transform: uppercase; margin-bottom: 12px; }
 
-    .doc { 
-      max-width: 640px; 
-      margin: 0 auto; 
-      padding: 2rem 1.25rem 4rem 1.25rem; 
-    }
+  /* 카드 */
+  .card { background: var(--bg-primary); border: 1px solid var(--border-tertiary); border-radius: var(--radius-lg); padding: 1.25rem; }
 
-    .sr-only {
-      position: absolute;
-      width: 1px;
-      height: 1px;
-      padding: 0;
-      margin: -1px;
-      overflow: hidden;
-      clip: rect(0, 0, 0, 0);
-      white-space: nowrap;
-      border: 0;
-    }
+  /* 흐름도 */
+  .flow-wrap { display: flex; align-items: stretch; gap: 0; margin: 1rem 0; }
+  .flow-step { flex: 1; padding: 1rem; border: 1px solid var(--border-tertiary); background: var(--bg-secondary); }
+  .flow-step:first-child { border-radius: var(--radius-lg) 0 0 var(--radius-lg); }
+  .flow-step:last-child { border-radius: 0 var(--radius-lg) var(--radius-lg) 0; }
+  .flow-arrow { display: flex; align-items: center; padding: 0 4px; color: var(--text-tertiary); font-size: 18px; }
+  .step-num { font-size: 11px; font-weight: 600; color: var(--text-tertiary); margin-bottom: 4px; }
+  .step-title { font-size: 14px; font-weight: 600; color: var(--text-primary); margin-bottom: 6px; }
+  .step-desc { font-size: 12px; color: var(--text-secondary); line-height: 1.5; }
 
-    /* -------------------------------------------------------------
-       3. M3 UI 컴포넌트 (Header, Tabs, Cards)
-       ------------------------------------------------------------- */
-    
-    /* M3 Large Top App Bar 스타일 헤더 */
-    .header-bar { 
-      background: var(--md-sys-color-primary-container);
-      color: var(--md-sys-color-on-primary-container);
-      border-radius: var(--md-shape-corner-extra-large); 
-      padding: 1.75rem 1.5rem; 
-      margin-bottom: 2rem; 
-      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.02);
-      display: flex;
-      flex-direction: column;
-      gap: 0.5rem;
-      border: 1px solid rgba(0, 104, 116, 0.1);
-    }
-    .header-bar .title-wrap {
-      display: flex;
-      align-items: center;
-      gap: 0.75rem;
-    }
-    .header-bar .title-wrap span.material-symbols-rounded {
-      font-size: 2rem;
-      color: var(--md-sys-color-primary);
-    }
-    .header-bar h1 { 
-      font-size: 1.35rem; 
-      font-weight: 700; 
-      letter-spacing: -0.02em;
-    }
-    .header-bar p { 
-      font-size: 0.85rem; 
-      color: var(--md-sys-color-on-background);
-      opacity: 0.85;
-      font-weight: 400;
-    }
+  /* 강조 박스 */
+  .highlight-box { border-left: 3px solid #1D9E75; background: #E1F5EE; border-radius: 0 var(--radius-md) var(--radius-md) 0; padding: 0.85rem 1rem; margin: 1rem 0; }
+  .highlight-box p { font-size: 13px; color: #085041; line-height: 1.6; }
 
-    /* M3 스타일 탭바 - wrap 기본 장착 */
-    .tab-row { 
-      display: flex; 
-      gap: 8px; 
-      margin-bottom: 2rem; 
-      flex-wrap: wrap; 
-      padding: 4px 0;
-      border-bottom: 1px solid var(--md-sys-color-outline-variant);
-    }
-    
-    .tab-btn { 
-      font-family: var(--font-sans);
-      font-size: 0.9rem; 
-      font-weight: 500;
-      padding: 8px 16px; 
-      border-radius: 20px; 
-      border: 1px solid var(--md-sys-color-outline-variant); 
-      background: var(--md-sys-color-background); 
-      color: var(--md-sys-color-on-surface-variant); 
-      cursor: pointer; 
-      transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1); 
-      white-space: nowrap; 
-      display: inline-flex;
-      align-items: center;
-      gap: 6px;
-    }
-    .tab-btn:hover {
-      background: var(--md-sys-color-secondary-container);
-      color: var(--md-sys-color-on-secondary-container);
-    }
-    .tab-btn.active { 
-      background: var(--md-sys-color-primary); 
-      color: var(--md-sys-color-on-primary); 
-      border-color: var(--md-sys-color-primary);
-      box-shadow: 0 2px 6px rgba(0, 104, 116, 0.2);
-      font-weight: 700;
-    }
+  /* 두 서비스 비교 */
+  .two-service { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin: 1rem 0; }
+  .service-card-a { background: #E6F1FB; border-radius: var(--radius-lg); padding: 1rem; }
+  .service-card-b { background: #E1F5EE; border-radius: var(--radius-lg); padding: 1rem; }
+  .service-card-a h3 { font-size: 13px; font-weight: 700; color: #0C447C; margin-bottom: 8px; display:flex; align-items:center; gap:6px; }
+  .service-card-b h3 { font-size: 13px; font-weight: 700; color: #085041; margin-bottom: 8px; display:flex; align-items:center; gap:6px; }
+  .service-row { font-size: 12px; color: var(--text-secondary); margin-bottom: 5px; display: flex; gap: 6px; }
+  .service-row span:first-child { color: var(--text-tertiary); flex-shrink: 0; min-width: 32px; }
 
-    /* 탭 콘텐츠 및 페이드인 애니메이션 */
-    .tab-content { 
-      display: none; 
-      animation: fadeIn 0.4s cubic-bezier(0.4, 0, 0.2, 1);
-    }
-    .tab-content.active { 
-      display: block; 
-    }
-    @keyframes fadeIn {
-      from { opacity: 0; transform: translateY(8px); }
-      to { opacity: 1; transform: translateY(0); }
-    }
+  /* 안내문 */
+  .notice { font-size: 12px; color: var(--text-tertiary); background: var(--bg-secondary); border-radius: var(--radius-md); padding: 0.7rem 0.9rem; margin-top: 1rem; line-height: 1.6; display: flex; gap: 6px; align-items: flex-start; }
+  .notice i { margin-top: 2px; }
 
-    /* 소제목 */
-    .section-title { 
-      font-size: 0.85rem; 
-      font-weight: 700; 
-      color: var(--md-sys-color-primary); 
-      letter-spacing: 0.05em; 
-      text-transform: uppercase; 
-      margin: 1.75rem 0 0.75rem 0; 
-      display: flex;
-      align-items: center;
-      gap: 6px;
-    }
+  /* 정보 그리드 */
+  .info-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin: 1rem 0; }
+  .info-item { background: var(--bg-secondary); border-radius: var(--radius-md); padding: 0.75rem 1rem; }
+  .info-label { font-size: 11px; color: var(--text-tertiary); margin-bottom: 3px; }
+  .info-value { font-size: 14px; font-weight: 600; color: var(--text-primary); }
 
-    /* M3 Outlined Card */
-    .card { 
-      background: var(--md-sys-color-surface); 
-      border: 1px solid var(--md-sys-color-outline-variant); 
-      border-radius: var(--md-shape-corner-large); 
-      padding: 1.25rem; 
-      box-shadow: 0 1px 3px rgba(0, 0, 0, 0.02);
-      margin-bottom: 1rem;
-      transition: box-shadow 0.25s, border-color 0.25s;
-    }
-    .card:hover {
-      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.04);
-      border-color: var(--md-sys-color-outline);
-    }
+  /* 항목 리스트 */
+  .item-list { display: flex; flex-direction: column; gap: 12px; }
+  .item-row { display: flex; gap: 12px; align-items: flex-start; }
+  .item-row i.lead-icon { font-size: 20px; color: #185FA5; flex-shrink: 0; margin-top: 2px; }
+  .item-row .item-title { font-size: 13px; font-weight: 600; color: var(--text-primary); margin-bottom: 2px; }
+  .item-row .item-desc { font-size: 12px; color: var(--text-secondary); line-height: 1.5; }
 
-    .divider { 
-      border: none; 
-      border-top: 1px dashed var(--md-sys-color-outline-variant); 
-      margin: 1.5rem 0; 
-    }
+  /* 체크 리스트 */
+  .check-list { display: flex; flex-direction: column; gap: 10px; }
+  .check-row { display: flex; gap: 10px; align-items: center; font-size: 13px; color: var(--text-primary); }
+  .check-row i { color: #0F6E56; font-size: 16px; }
 
-    /* -------------------------------------------------------------
-       4. 커스텀 안내 레이아웃 (Flow, Grid, List)
-       ------------------------------------------------------------- */
-    
-    /* 3단계 흐름도 */
-    .flow-wrap { 
-      display: flex; 
-      align-items: stretch; 
-      gap: 8px; 
-      margin: 1rem 0; 
-    }
-    .flow-step { 
-      flex: 1; 
-      padding: 1.25rem 1rem; 
-      border-radius: var(--md-shape-corner-large); 
-      border: 1px solid var(--md-sys-color-outline-variant); 
-      background: var(--md-sys-color-surface); 
-      display: flex;
-      flex-direction: column;
-      justify-content: flex-start;
-      transition: all 0.2s ease;
-    }
-    .flow-arrow { 
-      display: flex; 
-      align-items: center; 
-      justify-content: center;
-      color: var(--md-sys-color-outline); 
-      font-size: 24px; 
-      font-weight: 300;
-    }
-    .step-num { 
-      font-size: 11px; 
-      font-weight: 700; 
-      color: var(--md-sys-color-outline); 
-      margin-bottom: 4px; 
-    }
-    .step-title { 
-      font-size: 0.9rem; 
-      font-weight: 700; 
-      color: var(--md-sys-color-on-background); 
-      margin-bottom: 6px; 
-    }
-    .step-desc { 
-      font-size: 12px; 
-      color: var(--md-sys-color-on-surface-variant); 
-      line-height: 1.5; 
-    }
+  /* Q&A */
+  .qa-item { padding: 1rem 0; border-bottom: 1px solid var(--border-tertiary); }
+  .qa-item:last-child { border-bottom: none; }
+  .qa-q { font-size: 14px; font-weight: 600; color: var(--text-primary); margin-bottom: 6px; display: flex; gap: 8px; }
+  .qa-a { font-size: 13px; color: var(--text-secondary); line-height: 1.7; padding-left: 24px; }
+  .q-mark { color: #185FA5; font-weight: 700; flex-shrink: 0; }
 
-    /* 하이라이트 배너 */
-    .highlight-box { 
-      background: var(--md-sys-color-secondary-container); 
-      border-radius: var(--md-shape-corner-large); 
-      padding: 1rem 1.25rem; 
-      margin: 1.25rem 0; 
-      border-left: 5px solid var(--md-sys-color-primary);
-      box-shadow: 0 1px 3px rgba(0, 0, 0, 0.01);
-    }
-    .highlight-box p { 
-      font-size: 0.85rem; 
-      color: var(--md-sys-color-on-secondary-container); 
-      line-height: 1.6; 
-      font-weight: 500;
-    }
+  /* 푸터 */
+  .footer-info { margin-top: 1.5rem; padding: 1rem; background: var(--bg-secondary); border-radius: var(--radius-md); font-size: 12px; color: var(--text-tertiary); line-height: 1.7; text-align: center; }
+  .footer-info strong { color: var(--text-secondary); display: block; margin-bottom: 4px; font-size: 13px; }
 
-    /* 두 서비스 병렬 비교 */
-    .two-service { 
-      display: grid; 
-      grid-template-columns: 1fr 1fr; 
-      gap: 12px; 
-      margin: 1rem 0; 
-    }
-    
-    .service-card-a { 
-      background: #f0f6ff; 
-      border-radius: var(--md-shape-corner-large); 
-      padding: 1.25rem; 
-      border: 1px solid #d0e1fd;
-      transition: transform 0.2s;
-    }
-    .service-card-a:hover, .service-card-b:hover {
-      transform: translateY(-2px);
-    }
-    .service-card-a h3 { 
-      font-size: 0.95rem; 
-      font-weight: 700; 
-      color: #0c447c; 
-      margin-bottom: 0.75rem; 
-      display: flex;
-      align-items: center;
-      gap: 6px;
-    }
-    .service-card-a h3 span.material-symbols-rounded {
-      color: #185fa5;
-    }
+  .sr-only { position: absolute; width: 1px; height: 1px; padding: 0; margin: -1px; overflow: hidden; clip: rect(0,0,0,0); white-space: nowrap; border: 0; }
 
-    .service-card-b { 
-      background: var(--md-sys-color-success-container); 
-      border-radius: var(--md-shape-corner-large); 
-      padding: 1.25rem; 
-      border: 1px solid var(--md-sys-color-success-border);
-    }
-    .service-card-b h3 { 
-      font-size: 0.95rem; 
-      font-weight: 700; 
-      color: var(--md-sys-color-on-success-container); 
-      margin-bottom: 0.75rem; 
-      display: flex;
-      align-items: center;
-      gap: 6px;
-    }
-    .service-card-b h3 span.material-symbols-rounded {
-      color: #0c8065;
-    }
+  /* 모바일 */
+  @media (max-width: 580px) {
+    body { padding: 0.5rem 0; }
+    .doc { padding: 1.25rem 1rem; border-radius: 0; }
+    .flow-wrap { flex-direction: column; }
+    .flow-step:first-child { border-radius: var(--radius-lg) var(--radius-lg) 0 0; }
+    .flow-step:last-child { border-radius: 0 0 var(--radius-lg) var(--radius-lg); }
+    .flow-arrow { padding: 4px 0; justify-content: center; transform: rotate(90deg); }
+    .two-service, .info-grid { grid-template-columns: 1fr; }
+    .tab-row { overflow-x: auto; flex-wrap: nowrap; -webkit-overflow-scrolling: touch; padding-bottom: 4px; }
+    .tab-btn { white-space: nowrap; flex-shrink: 0; }
+    .header-bar h1 { font-size: 19px; }
+  }
 
-    .service-row { 
-      font-size: 12px; 
-      color: var(--md-sys-color-on-background); 
-      margin-bottom: 6px; 
-      display: flex; 
-      gap: 8px; 
-    }
-    .service-row span:first-child { 
-      color: var(--md-sys-color-outline); 
-      font-weight: 700;
-      width: 45px;
-      flex-shrink: 0; 
-    }
-    .service-row span:last-child {
-      font-weight: 500;
-    }
-
-    /* 4칸 정보 그리드 */
-    .info-grid { 
-      display: grid; 
-      grid-template-columns: 1fr 1fr; 
-      gap: 10px; 
-      margin: 1.25rem 0; 
-    }
-    .info-item { 
-      background: #f1f5f7; 
-      border-radius: var(--md-shape-corner-medium); 
-      padding: 0.85rem 1.1rem; 
-      border: 1px solid #e1e7ea;
-    }
-    .info-label { 
-      font-size: 11px; 
-      color: var(--md-sys-color-outline); 
-      margin-bottom: 4px; 
-      font-weight: 700;
-    }
-    .info-value { 
-      font-size: 0.92rem; 
-      font-weight: 700; 
-      color: var(--md-sys-color-primary); 
-    }
-
-    /* 공지사항Notice Banner */
-    .notice { 
-      font-size: 12px; 
-      color: var(--md-sys-color-on-surface-variant); 
-      background: #f1f3f4; 
-      border-radius: var(--md-shape-corner-medium); 
-      padding: 0.75rem 1rem; 
-      margin-top: 1.5rem; 
-      line-height: 1.6; 
-      display: flex;
-      align-items: flex-start;
-      gap: 8px;
-      border: 1.5px solid var(--md-sys-color-surface-variant);
-    }
-    .notice span.material-symbols-rounded {
-      font-size: 16px;
-      color: var(--md-sys-color-outline);
-      margin-top: 2px;
-      flex-shrink: 0;
-    }
-
-    /* Q&A 리스트 */
-    .qa-item { 
-      padding: 1.25rem 0.5rem; 
-      border-bottom: 1px solid var(--md-sys-color-outline-variant); 
-      transition: background-color 0.2s;
-    }
-    .qa-item:last-child { 
-      border-bottom: none; 
-    }
-    .qa-q { 
-      font-size: 0.95rem; 
-      font-weight: 700; 
-      color: var(--md-sys-color-on-background); 
-      margin-bottom: 6px; 
-      display: flex; 
-      gap: 10px; 
-    }
-    .qa-a { 
-      font-size: 0.875rem; 
-      color: var(--md-sys-color-on-surface-variant); 
-      line-height: 1.65; 
-      padding-left: 26px; 
-    }
-    .q-mark { 
-      color: var(--md-sys-color-primary); 
-      font-weight: 700; 
-      font-size: 1.1rem;
-      line-height: 1;
-      flex-shrink: 0; 
-    }
-
-    .card-list-item {
-      display: flex;
-      gap: 12px;
-      align-items: flex-start;
-      margin-bottom: 12px;
-    }
-    .card-list-item:last-child {
-      margin-bottom: 0;
-    }
-    .card-list-item span.material-symbols-rounded {
-      font-size: 20px;
-      color: var(--md-sys-color-primary);
-      flex-shrink: 0;
-      margin-top: 1px;
-    }
-    .list-title {
-      font-size: 13px;
-      font-weight: 700;
-      color: var(--md-sys-color-on-background);
-      margin-bottom: 2px;
-    }
-    .list-desc {
-      font-size: 12px;
-      color: var(--md-sys-color-on-surface-variant);
-    }
-
-    .check-list-item {
-      display: flex;
-      gap: 8px;
-      align-items: center;
-      font-size: 13px;
-      color: var(--md-sys-color-on-background);
-      font-weight: 500;
-      margin-bottom: 8px;
-    }
-    .check-list-item:last-child {
-      margin-bottom: 0;
-    }
-    .check-list-item span.material-symbols-rounded {
-      color: #0c8065;
-      font-size: 18px;
-      font-weight: 700;
-    }
-
-    /* -------------------------------------------------------------
-       5. 모바일 반응형 최적화 미디어 쿼리 (2x2 바둑판식 레이아웃 대폭 강화)
-       ------------------------------------------------------------- */
-    @media (max-width: 600px) {
-      .doc {
-        padding: 1.25rem 0.85rem;
-      }
-      .header-bar {
-        padding: 1.25rem 1rem;
-        border-radius: var(--md-shape-corner-large);
-        margin-bottom: 1.5rem;
-      }
-      .header-bar h1 {
-        font-size: 1.15rem;
-      }
-      .header-bar .title-wrap span.material-symbols-rounded {
-        font-size: 1.6rem;
-      }
-
-      /* 2x2 바둑판식 배열로 전환하여 절대 오른쪽이 잘리지 않고 완전 깔끔하게 만듦 */
-      .tab-row {
-        display: grid;
-        grid-template-columns: 1fr 1fr; 
-        gap: 6px;
-        margin-bottom: 1.5rem;
-        border-bottom: none; /* 하단 실선 제거 */
-        padding: 0;
-      }
-      
-      .tab-btn {
-        font-size: 0.8rem;
-        padding: 10px 6px;
-        gap: 4px;
-        justify-content: center; /* 아이콘과 글자 가운데 정렬 */
-        width: 100%;
-        border-radius: 12px;
-      }
-      
-      .tab-btn span.material-symbols-rounded {
-        font-size: 16px !important;
-      }
-
-      /* 모바일에서는 가로 흐름도(Flow)를 직관적인 세로(Vertical) 단계식으로 전환 */
-      .flow-wrap {
-        flex-direction: column;
-        gap: 0;
-      }
-      .flow-step {
-        border-radius: 0 !important;
-        border-bottom: none;
-      }
-      .flow-step:first-child {
-        border-radius: var(--md-shape-corner-large) var(--md-shape-corner-large) 0 0 !important;
-      }
-      .flow-step:last-child {
-        border-radius: 0 0 var(--md-shape-corner-large) var(--md-shape-corner-large) !important;
-        border-bottom: 1px solid var(--md-sys-color-outline-variant);
-      }
-      .flow-arrow {
-        transform: rotate(90deg); /* 꺾쇠를 세로 아래 방향으로 회전 */
-        padding: 4px 0;
-        font-size: 16px;
-      }
-
-      /* 모바일 레이아웃 1열 조절 */
-      .two-service {
-        grid-template-columns: 1fr;
-        gap: 10px;
-      }
-
-      .info-grid {
-        grid-template-columns: 1fr;
-        gap: 8px;
-      }
-      
-      .info-item {
-        padding: 0.65rem 1rem;
-      }
-    }
-  </style>
+  /* 인쇄 */
+  @media print {
+    body { background: #fff; padding: 0; }
+    .doc { box-shadow: none; max-width: 100%; padding: 1rem; }
+    .tab-row { display: none; }
+    .tab-content { display: block !important; page-break-inside: avoid; }
+    .tab-content:not(:first-of-type) { page-break-before: always; }
+  }
+</style>
 </head>
 <body>
 
 <div class="doc">
-  <!-- 시각 장애인 접근성을 고려한 최상위 제목 (숨김 처리) -->
-  <h2 class="sr-only">방문재활 서비스 환자·보호자 안내자료</h2>
+  <h2 class="sr-only">씨엔씨푸른병원 방문재활 서비스 환자·보호자 안내자료</h2>
 
-  <!-- M3 헤더 영역 -->
-  <header class="header-bar">
-    <div class="title-wrap">
-      <span class="material-symbols-rounded" aria-hidden="true">home_health</span>
-      <h1>방문재활 서비스 안내</h1>
-    </div>
+  <div class="header-bar">
+    <div class="header-hospital">씨엔씨푸른병원 재활치료센터</div>
+    <h1><i class="ti ti-home-heart" aria-hidden="true"></i> 방문재활 서비스 안내</h1>
     <p>퇴원 후에도 집에서 재활치료를 계속 받으실 수 있습니다</p>
-  </header>
+  </div>
 
-  <!-- M3 탭 메뉴 목록 -->
-  <nav class="tab-row" role="tablist" aria-label="안내 서비스 탭 목록">
-    <button class="tab-btn active" role="tab" aria-selected="true" aria-controls="tab-overview" onclick="showTab('overview', this)">
-      <span class="material-symbols-rounded" style="font-size:18px;">dashboard</span>서비스 개요
-    </button>
-    <button class="tab-btn" role="tab" aria-selected="false" aria-controls="tab-service1" onclick="showTab('service1', this)">
-      <span class="material-symbols-rounded" style="font-size:18px;">local_hospital</span>본원 방문재활
-    </button>
-    <button class="tab-btn" role="tab" aria-selected="false" aria-controls="tab-service2" onclick="showTab('service2', this)">
-      <span class="material-symbols-rounded" style="font-size:18px;">domain</span>청주시 방문재활
-    </button>
-    <button class="tab-btn" role="tab" aria-selected="false" aria-controls="tab-qa" onclick="showTab('qa', this)">
-      <span class="material-symbols-rounded" style="font-size:18px;">help</span>자주 묻는 질문
-    </button>
-  </nav>
+  <div class="tab-row">
+    <button class="tab-btn active" data-tab="overview">서비스 개요</button>
+    <button class="tab-btn" data-tab="service1">씨엔씨푸른병원 방문재활</button>
+    <button class="tab-btn" data-tab="service2">청주시 방문재활</button>
+    <button class="tab-btn" data-tab="qa">자주 묻는 질문</button>
+  </div>
 
-  <!-- [탭 1] 서비스 개요 -->
-  <section id="tab-overview" class="tab-content active" role="tabpanel" aria-labelledby="overview-tab">
-    <p class="section-title">
-      <span class="material-symbols-rounded" style="font-size:16px;">trending_flat</span>전체 흐름
-    </p>
+  <!-- 서비스 개요 -->
+  <div id="tab-overview" class="tab-content active">
+    <p class="section-title">전체 흐름</p>
     <div class="flow-wrap">
       <div class="flow-step">
         <div class="step-num">1단계</div>
         <div class="step-title">퇴원</div>
-        <div class="step-desc">회복기 재활치료 종료 후 자택 퇴원</div>
+        <div class="step-desc">씨엔씨푸른병원 회복기 재활치료 종료 후 자택 퇴원</div>
       </div>
       <div class="flow-arrow">›</div>
-      <div class="flow-step" style="background:#e6f1fb; border-color:#b5d4f4;">
-        <div class="step-num" style="color:#185fa5;">2단계</div>
-        <div class="step-title">본원 방문재활</div>
+      <div class="flow-step" style="background:#E6F1FB; border-color:#B5D4F4;">
+        <div class="step-num" style="color:#185FA5;">2단계</div>
+        <div class="step-title">씨엔씨푸른병원 방문재활</div>
         <div class="step-desc">집에서 치료사가 직접 방문하여 재활치료 (최대 120일)</div>
       </div>
       <div class="flow-arrow">›</div>
-      <div class="flow-step" style="background:var(--md-sys-color-success-container); border-color:var(--md-sys-color-success-border);">
-        <div class="step-num" style="color:var(--md-sys-color-on-success-container);">3단계</div>
+      <div class="flow-step" style="background:#E1F5EE; border-color:#9FE1CB;">
+        <div class="step-num" style="color:#0F6E56;">3단계</div>
         <div class="step-title">청주시 방문재활</div>
         <div class="step-desc">청주시 지원으로 추가 재활치료 연계 (최대 90일)</div>
       </div>
     </div>
 
-    <!-- 강조 배너 박스 -->
     <div class="highlight-box">
-      <p>청주시 방문재활은 추가 지원 서비스입니다. 본원 방문재활(120일)을 마친 후, 조건이 맞는 분께 청주시에서 지원하는 방문재활을 연계해드립니다.</p>
+      <p><strong>청주시 방문재활은 추가 지원 서비스입니다.</strong> 씨엔씨푸른병원 방문재활(120일)을 마친 후, 조건이 맞는 분께 청주시에서 지원하는 방문재활을 연계해드립니다.</p>
     </div>
 
-    <p class="section-title">
-      <span class="material-symbols-rounded" style="font-size:16px;">compare_arrows</span>두 서비스 한눈에 비교
-    </p>
+    <p class="section-title" style="margin-top:1.25rem;">두 서비스 한눈에 비교</p>
     <div class="two-service">
       <div class="service-card-a">
-        <h3><span class="material-symbols-rounded" aria-hidden="true">local_hospital</span>본원 방문재활</h3>
+        <h3><i class="ti ti-building-hospital" aria-hidden="true"></i> 씨엔씨푸른병원 방문재활</h3>
         <div class="service-row"><span>대상</span><span>퇴원 환자 (조건 충족 시)</span></div>
         <div class="service-row"><span>기간</span><span>최대 120일</span></div>
         <div class="service-row"><span>인원</span><span>물리치료사 + 작업치료사</span></div>
         <div class="service-row"><span>비용</span><span>담당자에게 문의</span></div>
       </div>
       <div class="service-card-b">
-        <h3><span class="material-symbols-rounded" aria-hidden="true">domain</span>청주시 방문재활</h3>
+        <h3><i class="ti ti-building" aria-hidden="true"></i> 청주시 방문재활</h3>
         <div class="service-row"><span>대상</span><span>청주시 거주 만 65세 이상</span></div>
         <div class="service-row"><span>기간</span><span>최대 90일 (주 2회)</span></div>
         <div class="service-row"><span>인원</span><span>치료사 2인 또는 치료사+사회복지사</span></div>
@@ -629,21 +200,16 @@
     </div>
 
     <div class="notice">
-      <span class="material-symbols-rounded" aria-hidden="true">info</span>
-      <span>비용 및 세부 조건은 담당 치료사 또는 원무과에 문의해 주세요. 사업 기준에 따라 변경될 수 있습니다.</span>
+      <i class="ti ti-info-circle" aria-hidden="true"></i>
+      <span>비용 및 세부 조건은 담당 치료사 또는 씨엔씨푸른병원 원무과에 문의해 주세요. 사업 기준에 따라 변경될 수 있습니다.</span>
     </div>
-  </section>
+  </div>
 
-  <!-- [탭 2] 본원 방문재활 -->
-  <section id="tab-service1" class="tab-content" role="tabpanel" aria-labelledby="service1-tab">
-    <p class="section-title">
-      <span class="material-symbols-rounded" style="font-size:16px;">medical_services</span>본원 방문재활이란?
-    </p>
-    <p style="font-size:0.875rem; color:var(--md-sys-color-on-surface-variant); line-height:1.7; margin-bottom:1.25rem;">
-      퇴원 후 집에서 계속 재활치료가 필요한 분께, 저희 병원 치료사가 직접 가정을 방문하여 치료를 제공하는 서비스입니다.
-    </p>
+  <!-- 씨엔씨푸른병원 방문재활 -->
+  <div id="tab-service1" class="tab-content">
+    <p class="section-title">씨엔씨푸른병원 방문재활이란?</p>
+    <p style="font-size:14px; color:var(--text-secondary); line-height:1.7; margin-bottom:1rem;">퇴원 후 집에서 계속 재활치료가 필요한 분께, 씨엔씨푸른병원 치료사가 직접 가정을 방문하여 치료를 제공하는 서비스입니다.</p>
 
-    <!-- 4칸 정보 그리드 -->
     <div class="info-grid">
       <div class="info-item">
         <div class="info-label">치료 인원</div>
@@ -663,77 +229,56 @@
       </div>
     </div>
 
-    <p class="section-title">
-      <span class="material-symbols-rounded" style="font-size:16px;">vaccines</span>방문 시 제공되는 것
-    </p>
+    <p class="section-title" style="margin-top:1.25rem;">방문 시 제공되는 것</p>
     <div class="card">
-      <div style="display:flex; flex-direction:column; gap:16px;">
-        <div class="card-list-item">
-          <span class="material-symbols-rounded" aria-hidden="true">directions_walk</span>
+      <div class="item-list">
+        <div class="item-row">
+          <i class="ti ti-run lead-icon" aria-hidden="true"></i>
           <div>
-            <div class="list-title">신체 기능 재활치료</div>
-            <div class="list-desc">근력 강화, 균형 훈련, 보행 연습 등</div>
+            <div class="item-title">신체 기능 재활치료</div>
+            <div class="item-desc">근력 강화, 균형 훈련, 보행 연습 등</div>
           </div>
         </div>
-        <div class="card-list-item">
-          <span class="material-symbols-rounded" aria-hidden="true">accessibility_new</span>
+        <div class="item-row">
+          <i class="ti ti-hand-move lead-icon" aria-hidden="true"></i>
           <div>
-            <div class="list-title">일상생활 동작 훈련</div>
-            <div class="list-desc">식사, 옷 입기, 이동 등 실생활 동작 연습</div>
+            <div class="item-title">일상생활 동작 훈련</div>
+            <div class="item-desc">식사, 옷 입기, 이동 등 실생활 동작 연습</div>
           </div>
         </div>
-        <div class="card-list-item">
-          <span class="material-symbols-rounded" aria-hidden="true">assignment_turned_in</span>
+        <div class="item-row">
+          <i class="ti ti-clipboard-check lead-icon" aria-hidden="true"></i>
           <div>
-            <div class="list-title">기능 평가 및 계획 수립</div>
-            <div class="list-desc">치료 시작 전 전문 평가 후 개인별 계획 수립</div>
+            <div class="item-title">기능 평가 및 계획 수립</div>
+            <div class="item-desc">치료 시작 전 전문 평가 후 개인별 계획 수립</div>
           </div>
         </div>
-        <div class="card-list-item">
-          <span class="material-symbols-rounded" aria-hidden="true">videocam</span>
+        <div class="item-row">
+          <i class="ti ti-video lead-icon" aria-hidden="true"></i>
           <div>
-            <div class="list-title">다직종 관리 점검</div>
-            <div class="list-desc">의사·간호사·치료사·사회복지사가 함께 상태 점검 (화상회의)</div>
+            <div class="item-title">다직종 관리 점검</div>
+            <div class="item-desc">의사·간호사·치료사·사회복지사가 함께 상태 점검 (화상회의)</div>
           </div>
         </div>
       </div>
     </div>
-  </section>
+  </div>
 
-  <!-- [탭 3] 청주시 방문재활 -->
-  <section id="tab-service2" class="tab-content" role="tabpanel" aria-labelledby="service2-tab">
-    <p class="section-title">
-      <span class="material-symbols-rounded" style="font-size:16px;">handshake</span>청주시 통합돌봄 방문재활이란?
-    </p>
-    <p style="font-size:0.875rem; color:var(--md-sys-color-on-surface-variant); line-height:1.7; margin-bottom:1.25rem;">
-      본원 방문재활(120일)이 끝난 후에도 재활이 더 필요하신 분께, 청주시에서 추가로 지원하는 가정 방문 재활치료 서비스입니다.
-    </p>
+  <!-- 청주시 방문재활 -->
+  <div id="tab-service2" class="tab-content">
+    <p class="section-title">청주시 통합돌봄 방문재활이란?</p>
+    <p style="font-size:14px; color:var(--text-secondary); line-height:1.7; margin-bottom:1rem;">씨엔씨푸른병원 방문재활(120일)이 끝난 후에도 재활이 더 필요하신 분께, 청주시에서 추가로 지원하는 가정 방문 재활치료 서비스입니다.</p>
 
-    <p class="section-title">
-      <span class="material-symbols-rounded" style="font-size:16px;">fact_check</span>이런 분이 받을 수 있습니다
-    </p>
-    <div class="card" style="margin-bottom:1.25rem; border-color:var(--md-sys-color-success-border); background:#f4faf8;">
-      <div style="display:flex; flex-direction:column; gap:10px;">
-        <div class="check-list-item">
-          <span class="material-symbols-rounded" aria-hidden="true">check_circle</span>
-          <span>만 65세 이상</span>
-        </div>
-        <div class="check-list-item">
-          <span class="material-symbols-rounded" aria-hidden="true">check_circle</span>
-          <span>청주시에 주소지가 있는 분</span>
-        </div>
-        <div class="check-list-item">
-          <span class="material-symbols-rounded" aria-hidden="true">check_circle</span>
-          <span>본원 방문재활 120일을 마친 분</span>
-        </div>
-        <div class="check-list-item">
-          <span class="material-symbols-rounded" aria-hidden="true">check_circle</span>
-          <span>의사가 추가 재활치료가 필요하다고 판단한 분</span>
-        </div>
+    <p class="section-title">이런 분이 받을 수 있습니다</p>
+    <div class="card" style="margin-bottom:1rem;">
+      <div class="check-list">
+        <div class="check-row"><i class="ti ti-check" aria-hidden="true"></i><span>만 65세 이상</span></div>
+        <div class="check-row"><i class="ti ti-check" aria-hidden="true"></i><span>청주시에 주소지가 있는 분</span></div>
+        <div class="check-row"><i class="ti ti-check" aria-hidden="true"></i><span>씨엔씨푸른병원 방문재활 120일을 마친 분</span></div>
+        <div class="check-row"><i class="ti ti-check" aria-hidden="true"></i><span>의사가 추가 재활치료가 필요하다고 판단한 분</span></div>
       </div>
     </div>
 
-    <!-- 그리드 상세정보 -->
     <div class="info-grid">
       <div class="info-item">
         <div class="info-label">서비스 기간</div>
@@ -749,119 +294,64 @@
       </div>
       <div class="info-item">
         <div class="info-label">신청</div>
-        <div class="info-value">병원 담당자 연계</div>
+        <div class="info-value">씨엔씨푸른병원 담당자 연계</div>
       </div>
     </div>
 
-    <div class="highlight-box" style="border-left-color:#0c8065; background:var(--md-sys-color-success-container);">
-      <p style="color:var(--md-sys-color-on-success-container);">청주시 방문재활은 병원에서 직접 연계해드립니다. 별도로 시청에 방문하실 필요 없이, 퇴원 상담 시 담당자에게 말씀해 주세요.</p>
+    <div class="highlight-box" style="margin-top:1rem;">
+      <p>청주시 방문재활은 씨엔씨푸른병원에서 직접 연계해드립니다. 별도로 시청에 방문하실 필요 없이, 퇴원 상담 시 담당자에게 말씀해 주세요.</p>
     </div>
 
     <div class="notice">
-      <span class="material-symbols-rounded" aria-hidden="true">info</span>
+      <i class="ti ti-info-circle" aria-hidden="true"></i>
       <span>청주시 통합돌봄 방문재활은 청주시 승인 후 시작되며, 사업 예산 및 대상자 수에 따라 제공 여부가 달라질 수 있습니다.</span>
     </div>
-  </section>
+  </div>
 
-  <!-- [탭 4] 자주 묻는 질문 -->
-  <section id="tab-qa" class="tab-content" role="tabpanel" aria-labelledby="qa-tab">
+  <!-- Q&A -->
+  <div id="tab-qa" class="tab-content">
     <div class="qa-item">
-      <div class="qa-q">
-        <span class="q-mark" aria-hidden="true">Q</span>
-        <span>퇴원 후 바로 방문재활을 받을 수 있나요?</span>
-      </div>
-      <div class="qa-a">
-        퇴원 전 상담을 통해 일정을 협의하고, 퇴원 후 일정에 맞춰 치료사가 방문합니다. 퇴원 1~2일 전에 담당 간호사에게 신청하시면 됩니다.
-      </div>
+      <div class="qa-q"><span class="q-mark">Q</span><span>퇴원 후 바로 방문재활을 받을 수 있나요?</span></div>
+      <div class="qa-a">퇴원 전 상담을 통해 일정을 협의하고, 퇴원 후 일정에 맞춰 치료사가 방문합니다. 퇴원 1~2일 전에 씨엔씨푸른병원 담당 간호사에게 신청하시면 됩니다.</div>
     </div>
-    
     <div class="qa-item">
-      <div class="qa-q">
-        <span class="q-mark" aria-hidden="true">Q</span>
-        <span>치료사가 몇 명이나 오나요?</span>
-      </div>
-      <div class="qa-a">
-        본원 방문재활은 물리치료사와 작업치료사 2명이 함께 방문합니다. 청주시 방문재활도 치료사 2인이 방문합니다.
-      </div>
+      <div class="qa-q"><span class="q-mark">Q</span><span>치료사가 몇 명이나 오나요?</span></div>
+      <div class="qa-a">씨엔씨푸른병원 방문재활은 물리치료사와 작업치료사 2명이 함께 방문합니다. 청주시 방문재활도 치료사 2인이 방문합니다.</div>
     </div>
+    <div class="qa-item">
+      <div class="qa-q"><span class="q-mark">Q</span><span>집 안 어디서 치료를 받나요?</span></div>
+      <div class="qa-a">거실, 방 등 환자분이 편하신 공간에서 치료합니다. 특별한 장비 설치 없이 가능하며, 치료사가 방문 전 필요한 안전 사항을 안내해드립니다.</div>
+    </div>
+    <div class="qa-item">
+      <div class="qa-q"><span class="q-mark">Q</span><span>청주시 방문재활은 누가 신청하나요?</span></div>
+      <div class="qa-a">씨엔씨푸른병원에서 직접 청주시에 연계하여 신청합니다. 환자분이나 보호자분이 따로 시청에 방문하실 필요 없습니다. 담당자에게 의사를 밝혀주시면 됩니다.</div>
+    </div>
+    <div class="qa-item">
+      <div class="qa-q"><span class="q-mark">Q</span><span>120일이 지나면 무조건 청주시 방문재활을 받을 수 있나요?</span></div>
+      <div class="qa-a">청주시 거주 만 65세 이상이고, 의사가 추가 재활이 필요하다고 판단한 경우에 청주시 승인을 거쳐 연계됩니다. 모든 분께 자동으로 제공되는 것은 아닙니다.</div>
+    </div>
+    <div class="qa-item">
+      <div class="qa-q"><span class="q-mark">Q</span><span>비용은 얼마인가요?</span></div>
+      <div class="qa-a">비용은 보험 종류와 개인 상황에 따라 다릅니다. 정확한 금액은 씨엔씨푸른병원 원무과 또는 담당 치료사에게 문의해 주세요.</div>
+    </div>
+  </div>
 
-    <div class="qa-item">
-      <div class="qa-q">
-        <span class="q-mark" aria-hidden="true">Q</span>
-        <span>집 안 어디서 치료를 받나요?</span>
-      </div>
-      <div class="qa-a">
-        거실, 방 등 환자분이 편하신 공간에서 치료합니다. 특별한 장비 설치 없이 가능하며, 치료사가 방문 전 필요한 안전 사항을 안내해드립니다.
-      </div>
-    </div>
-
-    <div class="qa-item">
-      <div class="qa-q">
-        <span class="q-mark" aria-hidden="true">Q</span>
-        <span>청주시 방문재활은 누가 신청하나요?</span>
-      </div>
-      <div class="qa-a">
-        병원에서 직접 청주시에 연계하여 신청합니다. 환자분이나 보호자분이 따로 시청에 방문하실 필요 없습니다. 담당자에게 의사를 밝혀주시면 됩니다.
-      </div>
-    </div>
-
-    <div class="qa-item">
-      <div class="qa-q">
-        <span class="q-mark" aria-hidden="true">Q</span>
-        <span>120일이 지나면 무조건 청주시 방문재활을 받을 수 있나요?</span>
-      </div>
-      <div class="qa-a">
-        청주시 거주 만 65세 이상이고, 의사가 추가 재활이 필요하다고 판단한 경우에 청주시 승인을 거쳐 연계됩니다. 모든 분께 자동으로 제공되는 것은 아닙니다.
-      </div>
-    </div>
-
-    <div class="qa-item">
-      <div class="qa-q">
-        <span class="q-mark" aria-hidden="true">Q</span>
-        <span>비용은 얼마인가요?</span>
-      </div>
-      <div class="qa-a">
-        비용은 보험 종류와 개인 상황에 따라 다릅니다. 정확한 금액은 원무과 또는 담당 치료사에게 문의해 주세요.
-      </div>
-    </div>
-  </section>
+  <div class="footer-info">
+    <strong>씨엔씨푸른병원 재활치료센터</strong>
+    문의: 담당 간호사 · 방문재활 상담담당자 · 원무과
+  </div>
 </div>
 
-<!-- -------------------------------------------------------------
-     6. JavaScript (안정적인 M3 탭 스위칭 로직)
-     ------------------------------------------------------------- -->
 <script>
-  /**
-   * 탭 전환을 처리하는 함수
-   * @param {string} tabId - 전환할 대상 탭 고유 아이디 (overview, service1, service2, qa)
-   * @param {HTMLElement} btnElement - 클릭된 버튼 요소 자기 자신 (this)
-   */
-  function showTab(tabId, btnElement) {
-    if (!tabId || !btnElement) return;
-
-    // 1. 모든 탭 콘텐츠 요소를 보이지 않게 처리하고 active 클래스 제거
-    const contents = document.querySelectorAll('.tab-content');
-    contents.forEach(function(content) {
-      content.classList.remove('active');
+  document.querySelectorAll('.tab-btn').forEach(btn => {
+    btn.addEventListener('click', () => {
+      const tab = btn.dataset.tab;
+      document.querySelectorAll('.tab-content').forEach(el => el.classList.remove('active'));
+      document.querySelectorAll('.tab-btn').forEach(el => el.classList.remove('active'));
+      document.getElementById('tab-' + tab).classList.add('active');
+      btn.classList.add('active');
     });
-
-    // 2. 모든 탭 버튼의 active 상태 해제 및 aria-selected 설정 갱신
-    const buttons = document.querySelectorAll('.tab-btn');
-    buttons.forEach(function(btn) {
-      btn.classList.remove('active');
-      btn.setAttribute('aria-selected', 'false');
-    });
-
-    // 3. 선택된 대상 탭 콘텐츠 노출 및 active 클래스 부여
-    const targetContent = document.getElementById('tab-' + tabId);
-    if (targetContent) {
-      targetContent.classList.add('active');
-    }
-
-    // 4. 클릭한 버튼에 active 클래스 부여 및 aria-selected를 true로 변경
-    btnElement.classList.add('active');
-    btnElement.setAttribute('aria-selected', 'true');
-  }
+  });
 </script>
 
 </body>
