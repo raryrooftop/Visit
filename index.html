@@ -129,26 +129,21 @@
       font-weight: 400;
     }
 
-    /* M3 표준 가로 스크롤형 탭바 */
+    /* M3 스타일 탭바 - wrap 구조로 변경하여 잘림 전면 해결 */
     .tab-row { 
       display: flex; 
-      gap: 8px; 
+      gap: 6px; 
       margin-bottom: 2rem; 
-      overflow-x: auto; 
-      scrollbar-width: none; 
-      -ms-overflow-style: none; 
-      padding: 4px;
+      flex-wrap: wrap; /* 화면 너비가 좁아지면 아래 줄로 예쁘게 내려옴 */
+      padding: 4px 0;
       border-bottom: 1px solid var(--md-sys-color-outline-variant);
-    }
-    .tab-row::-webkit-scrollbar {
-      display: none; 
     }
     
     .tab-btn { 
       font-family: var(--font-sans);
       font-size: 0.9rem; 
       font-weight: 500;
-      padding: 8px 18px; 
+      padding: 8px 16px; 
       border-radius: 20px; 
       border: 1px solid var(--md-sys-color-outline-variant); 
       background: var(--md-sys-color-background); 
@@ -267,7 +262,7 @@
       line-height: 1.5; 
     }
 
-    /* 하이라이트 배너 (M3 Filled Card 변형) */
+    /* 하이라이트 배너 */
     .highlight-box { 
       background: var(--md-sys-color-secondary-container); 
       border-radius: var(--md-shape-corner-large); 
@@ -283,7 +278,7 @@
       font-weight: 500;
     }
 
-    /* M3 두 서비스 가로 병렬 비교 카드 */
+    /* 두 서비스 병렬 비교 */
     .two-service { 
       display: grid; 
       grid-template-columns: 1fr 1fr; 
@@ -291,7 +286,6 @@
       margin: 1rem 0; 
     }
     
-    /* 본원재활 블루톤 카드 */
     .service-card-a { 
       background: #f0f6ff; 
       border-radius: var(--md-shape-corner-large); 
@@ -315,7 +309,6 @@
       color: #185fa5;
     }
 
-    /* 청주시재활 그린톤 카드 */
     .service-card-b { 
       background: var(--md-sys-color-success-container); 
       border-radius: var(--md-shape-corner-large); 
@@ -429,7 +422,6 @@
       flex-shrink: 0; 
     }
 
-    /* 리스트 형태 혜택 요소 */
     .card-list-item {
       display: flex;
       gap: 12px;
@@ -491,6 +483,20 @@
       }
       .header-bar .title-wrap span.material-symbols-rounded {
         font-size: 1.6rem;
+      }
+
+      /* 모바일에서 탭바 간격 및 버튼 크기 축소 (자동 2줄 정렬) */
+      .tab-row {
+        gap: 6px;
+        margin-bottom: 1.5rem;
+      }
+      .tab-btn {
+        font-size: 0.8rem;
+        padding: 6px 12px;
+        gap: 4px;
+      }
+      .tab-btn span.material-symbols-rounded {
+        font-size: 16px !important;
       }
 
       /* 모바일에서는 가로 흐름도(Flow)를 직관적인 세로(Vertical) 단계식으로 전환 */
@@ -846,20 +852,6 @@
     // 4. 클릭한 버튼에 active 클래스 부여 및 aria-selected를 true로 변경
     btnElement.classList.add('active');
     btnElement.setAttribute('aria-selected', 'true');
-
-    // 5. 모바일 환경을 위한 자연스러운 가로 스크롤 이동
-    const tabRow = document.querySelector('.tab-row');
-    if (tabRow) {
-      const buttonLeft = btnElement.offsetLeft;
-      const buttonWidth = btnElement.offsetWidth;
-      const tabRowWidth = tabRow.offsetWidth;
-      const scrollPosition = buttonLeft - (tabRowWidth / 2) + (buttonWidth / 2);
-      
-      tabRow.scrollTo({
-        left: scrollPosition,
-        behavior: 'smooth'
-      });
-    }
   }
 </script>
 
